@@ -1,7 +1,6 @@
 package com.marzeta.ordering.model;
 
 import java.util.Collection;
-import java.util.LinkedHashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,7 +25,7 @@ public class OrderEntity {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ORDER_ID")
-	private Collection<OrderItemEntity> items = new LinkedHashSet<OrderItemEntity>();
+	private Collection<OrderItemEntity> items;
 
 	public String getCustomer() {
 		return customer;

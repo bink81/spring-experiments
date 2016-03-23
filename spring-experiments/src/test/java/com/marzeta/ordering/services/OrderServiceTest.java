@@ -12,12 +12,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.marzeta.ordering.model.ExampleItemEntity;
-import com.marzeta.ordering.model.ExampleOrderEntity;
+import com.marzeta.ordering.model.OrderItemEntity;
+import com.marzeta.ordering.model.OrderEntity;
 
 @ContextConfiguration(locations = "/META-INF/spring/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ExampleOrderServiceTest {
+public class OrderServiceTest {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -26,8 +26,8 @@ public class ExampleOrderServiceTest {
 	@Transactional
 	public void testSaveOrderWithItems() throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		ExampleOrderEntity order = new ExampleOrderEntity();
-		order.getItems().add(new ExampleItemEntity());
+		OrderEntity order = new OrderEntity();
+		order.getItems().add(new OrderItemEntity());
 
 		session.save(order);
 		session.flush();
@@ -39,19 +39,19 @@ public class ExampleOrderServiceTest {
 	@Transactional
 	public void testSaveAndGet() throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		ExampleOrderEntity order = new ExampleOrderEntity();
+		OrderEntity order = new OrderEntity();
 		order.setNumber("1");
-		ExampleItemEntity item = new ExampleItemEntity();
+		OrderItemEntity item = new OrderItemEntity();
 		item.setName("foo");
 		order.getItems().add(item);
 
 		session.save(order);
 		session.flush();
 		session.clear();
-		ExampleOrderEntity other = (ExampleOrderEntity) session.get(ExampleOrderEntity.class, order.getId());
+		OrderEntity other = (OrderEntity) session.get(OrderEntity.class, order.getId());
 
 		assertEquals(1, other.getItems().size());
-		ExampleOrderEntity actual = other.getItems().iterator().next().getOrder();
+		OrderEntity actual = other.getItems().iterator().next().getOrder();
 		assertEquals(order.getNumber(), actual.getNumber());
 	}
 
@@ -59,24 +59,24 @@ public class ExampleOrderServiceTest {
 	@Transactional
 	public void testSaveAndFind() throws Exception {
 		Session session = sessionFactory.getCurrentSession();
-		ExampleOrderEntity order = new ExampleOrderEntity();
+		OrderEntity order = new OrderEntity();
 		order.setNumber("1");
-		ExampleItemEntity item = new ExampleItemEntity();
+		OrderItemEntity item = new OrderItemEntity();
 		item.setName("foo");
 		order.getItems().add(item);
 
 		session.save(order);
 		session.flush();
 		session.clear();
-		ExampleOrderEntity other = (ExampleOrderEntity) session
-				.createQuery("select o from ExampleOrderEntity o"
+		OrderEntity other = (OrderEntity) session
+				.createQuery("select o from OrderEntity o"
 						+ " join o.items i"
 						+ " where i.name=:name")
 				.setString("name", "foo")
 				.uniqueResult();
 
 		assertEquals(1, other.getItems().size());
-		ExampleOrderEntity actual = other.getItems().iterator().next().getOrder();
+		OrderEntity actual = other.getItems().iterator().next().getOrder();
 		assertEquals(order.getNumber(), actual.getNumber());
 	}
 }

@@ -12,14 +12,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ORDER_ITEMS")
-public class ExampleItemEntity {
+public class OrderItemEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne
-	private ExampleOrderEntity order;
+	private OrderEntity order;
 
 	private String name;
 
@@ -27,7 +27,7 @@ public class ExampleItemEntity {
 
 	private int quantity;
 
-	public ExampleOrderEntity getOrder() {
+	public OrderEntity getOrder() {
 		return order;
 	}
 

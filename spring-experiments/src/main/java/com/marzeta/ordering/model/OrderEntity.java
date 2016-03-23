@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ORDERS")
-public class ExampleOrderEntity {
+public class OrderEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,7 @@ public class ExampleOrderEntity {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ORDER_ID")
-	private Collection<ExampleItemEntity> items = new LinkedHashSet<ExampleItemEntity>();
+	private Collection<OrderItemEntity> items = new LinkedHashSet<OrderItemEntity>();
 
 	public String getCustomer() {
 		return customer;
@@ -36,11 +36,11 @@ public class ExampleOrderEntity {
 		this.customer = customer;
 	}
 
-	public Collection<ExampleItemEntity> getItems() {
+	public Collection<OrderItemEntity> getItems() {
 		return items;
 	}
 
-	public void setItems(Collection<ExampleItemEntity> items) {
+	public void setItems(Collection<OrderItemEntity> items) {
 		this.items = items;
 	}
 

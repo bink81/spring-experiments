@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate3.HibernateTransactionManager;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 
-import com.marzeta.ordering.model.ExampleItemEntity;
-import com.marzeta.ordering.model.ExampleOrderEntity;
+import com.marzeta.ordering.model.OrderItemEntity;
+import com.marzeta.ordering.model.OrderEntity;
 
 @Configuration
 public class HibernateConfiguration {
@@ -27,7 +27,7 @@ public class HibernateConfiguration {
 		props.put("hibernate.format_sql", "true");
 
 		AnnotationSessionFactoryBean bean = new AnnotationSessionFactoryBean();
-		bean.setAnnotatedClasses(new Class[] { ExampleItemEntity.class, ExampleOrderEntity.class });
+		bean.setAnnotatedClasses(new Class[] { OrderItemEntity.class, OrderEntity.class });
 		bean.setHibernateProperties(props);
 		bean.setDataSource(this.dataSource);
 		bean.setSchemaUpdate(true);

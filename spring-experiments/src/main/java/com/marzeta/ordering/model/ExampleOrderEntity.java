@@ -13,18 +13,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "T_ORDER")
-public class ExampleOrder {
+@Table(name = "ORDERS")
+public class ExampleOrderEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	private String number;
+
 	private String customer;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ORDER_ID")
-	private Collection<ExampleItem> items = new LinkedHashSet<ExampleItem>();
+	private Collection<ExampleItemEntity> items = new LinkedHashSet<ExampleItemEntity>();
 
 	public String getCustomer() {
 		return customer;
@@ -34,15 +36,23 @@ public class ExampleOrder {
 		this.customer = customer;
 	}
 
-	public Collection<ExampleItem> getItems() {
+	public Collection<ExampleItemEntity> getItems() {
 		return items;
 	}
 
-	public void setItems(Collection<ExampleItem> items) {
+	public void setItems(Collection<ExampleItemEntity> items) {
 		this.items = items;
 	}
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 }

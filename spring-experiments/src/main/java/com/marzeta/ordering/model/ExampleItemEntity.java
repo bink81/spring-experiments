@@ -5,36 +5,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * An item in an order
  */
 @Entity
-public class ExampleItem {
+@Table(name = "ORDER_ITEMS")
+public class ExampleItemEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne
-	private ExampleOrder order;
+	private ExampleOrderEntity order;
 
-	private String product;
+	private String name;
 
 	private double price;
 
 	private int quantity;
 
-	public ExampleOrder getOrder() {
+	public ExampleOrderEntity getOrder() {
 		return order;
-	}
-
-	public String getProduct() {
-		return product;
-	}
-
-	public void setProduct(String product) {
-		this.product = product;
 	}
 
 	public double getPrice() {
@@ -55,5 +49,13 @@ public class ExampleItem {
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

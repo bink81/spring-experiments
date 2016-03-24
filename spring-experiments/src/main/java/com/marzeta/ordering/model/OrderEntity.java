@@ -21,19 +21,9 @@ public class OrderEntity {
 
 	private String number;
 
-	private String customer;
-
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ORDER_ID")
 	private Collection<OrderItemEntity> items;
-
-	public String getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(String customer) {
-		this.customer = customer;
-	}
 
 	public Collection<OrderItemEntity> getItems() {
 		return items;

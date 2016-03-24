@@ -12,6 +12,11 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
+	<bean id="orderingService" class="com.marzeta.ordering.services.OrderingService" />
+	
 	<context:component-scan base-package="com.marzeta" />
 
+	
+<!-- 	<context:component-scan base-package="org.example" -->
+<!--                            name-generator="com.marzeta.MyBeanNameGenerator" /> -->
 </beans>

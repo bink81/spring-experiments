@@ -1,4 +1,4 @@
-package com.marzeta.ordering.services;
+package com.marzeta.ordering.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,12 +16,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.marzeta.ordering.model.OrderEntity;
-import com.marzeta.ordering.model.OrderItemEntity;
-
 @ContextConfiguration(locations = "/META-INF/spring/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class OrderServiceTest {
+public class OrderEntityTest {
 
 	private static final String ORDER_NUMBER = "1";
 
